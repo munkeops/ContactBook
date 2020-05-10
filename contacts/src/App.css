@@ -44,6 +44,7 @@
     "Body";
 }
 .Body{
+  padding-top: 10px;
   display: grid;
   grid-template-areas: 
   "LeftBar Contacts RightBar";
@@ -55,7 +56,11 @@
   height:100px;
   display: grid;
   grid-template-areas:
-  "Brand SearchBar Button";
+  "Brand SearchBar About";
+}
+.About{
+  margin: auto;
+
 }
 .SearchBar{
   display: inline;
@@ -67,6 +72,11 @@
   margin: auto;
 
 }
+#AboutButton{
+  background-color: transparent;
+  border:transparent;
+}
+#ContactButton:focus{outline: 0;}
 
 #SearchBox{
   height: 40px;
@@ -80,6 +90,53 @@
   height: 39px;
   border-radius: 50px;
   background-color: aqua;
+  margin: auto;
   /* border:transparent; */
 }
 #SearchButton:focus {outline:0;}
+
+#ListContacts{
+  list-style-type:none;
+  padding: 0px;
+
+}
+
+
+@media screen and (max-width: 600px){
+  .NavBar{
+    height: 150px;
+    grid-template-areas:
+      "Brand"
+      "About"
+      "SearchBar";
+      grid-template-rows: 33% 33% 33%;
+  }
+  .SearchBar{
+    width:100%;
+    margin:auto;
+  }
+  #SearchBox{
+    width:90%;
+    margin:auto;
+  }
+  #SearchButton{
+    width: 10%;
+  }
+  #SearchIcon{
+    width:100%;
+    height: auto;
+    max-height: 24px;
+    max-width: 24px ;
+  }
+  #ListContacts{
+    /* margin:0px; */
+    padding: 0px;
+  }
+
+  .Body{
+    display: grid;
+    grid-template-areas: 
+    "Contacts";    
+  }
+  
+}

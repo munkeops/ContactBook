@@ -1,0 +1,59 @@
+
+
+.ContactPost{
+    background-color: lightblue;
+    border:steelblue;
+    height:50px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas: 
+        "ContactImage ContactInfo Edit";
+    grid-template-columns: 10% 80% 10%;
+    grid-gap: 0.1px;
+    /* width: 600px; */
+}
+.ContactImage{
+    width: 100%;
+    /* margin: auto; */
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left:2px;
+}
+.ContactName{
+    /* width:70%; */
+    margin: auto;   
+    border-right: black;
+
+}
+
+#Dp{
+    height:40px;
+    
+    border:solid;
+    border-radius: 40px;
+    background-color: green;
+}
+#EditIcon{
+    float: right;
+    margin: auto;
+}
+#EditButton{
+    border:transparent;
+    background-color: transparent;
+    height: 100%;
+
+}
+#EditButton:focus{outline: 0;}
+
+
+.Edit{
+    float: right;
+    /* margin: auto; */
+}
+
+@media screen and (max-width: 600px){
+    .ContactPost{
+        width: 100%;
+    }
+
+}
