@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import ReactSearchBox from 'react-search-box'
 import ContactPost from "./ContactPost.js"
+import ContactService from './services/ContactService';
 // import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
 // import Home from './Home';
 // import AboutUs from './AboutUs';
@@ -27,6 +28,28 @@ function NavBar(){
 }
 
 function Body(){
+  const [contacts, setcontacts] = useState(null);
+
+  useEffect(() => {
+    if(!contacts) {
+      getContacts();
+    }
+  })
+  const getContacts = async () => {
+    let res = await ContactService.getAll();
+    console.log(res);
+    setcontacts(res);
+  }
+
+  const renderContact = contact => {
+    return (
+      <li><ContactPost name={contact.name} number={contact.number}/></li>
+      // <li key={product._id} className="list__item product">
+      //   {/* <h3 className="product__name">{contact.name}</h3>
+      //   <p className="product__description">{contact.number}</p> */}
+      // </li>
+    );
+  };
   return(
     <div className="Body">
       <div className="LeftBar"></div>
@@ -41,10 +64,17 @@ function Body(){
           </button>
         </div>
         <ul id="ListContacts">
-          <li><ContactPost name="Rohan" number="9998887776"/></li>
+          {console.log("into the list")}
+          
+          {(contacts && contacts.length > 0) ? (
+            contacts.map(contact => renderContact(contact))
+          ) : (
+            <p>No contacts found</p>
+          )}
+          {/* <li><ContactPost name="Rohan" number="9998887776"/></li>
           <li><ContactPost name="Raghav" number="9998887776"/></li>
           <li><ContactPost name="Qurram" number="9998887776"/></li>
-          <li><ContactPost name="Anchit" number="9998887776"/></li>
+          <li><ContactPost name="Anchit" number="9998887776"/></li> */}
 
         </ul>
       </div>
