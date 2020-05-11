@@ -1,6 +1,7 @@
 
 
 .ContactPost{
+    margin-top: 5px;
     background-color: lightblue;
     border:steelblue;
     height:50px;
@@ -29,13 +30,14 @@
 #Dp{
     height:40px;
     
-    border:solid;
+    /* border:solid; */
     border-radius: 40px;
-    background-color: green;
+    /* background-color:aq */
 }
 #EditIcon{
     float: right;
     margin: auto;
+    height:20px;
 }
 #EditButton{
     border:transparent;

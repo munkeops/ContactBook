@@ -31,8 +31,21 @@ function Body(){
     <div className="Body">
       <div className="LeftBar"></div>
       <div className="Contacts">
+        <div id="Functions">
+          
+          <button id="ExportButton">
+            <img src="https://img.icons8.com/offices/30/000000/export-csv.png"/>EXPORT
+          </button>
+          <button id="AddNewButton">
+            <img id="AddNewIcon" src="https://img.icons8.com/color/50/000000/add.png"/>ADD NEW
+          </button>
+        </div>
         <ul id="ListContacts">
-          <li><ContactPost/></li>
+          <li><ContactPost name="Rohan" number="9998887776"/></li>
+          <li><ContactPost name="Raghav" number="9998887776"/></li>
+          <li><ContactPost name="Qurram" number="9998887776"/></li>
+          <li><ContactPost name="Anchit" number="9998887776"/></li>
+
         </ul>
       </div>
       <div className="RightBar"></div>

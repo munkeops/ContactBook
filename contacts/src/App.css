@@ -68,15 +68,25 @@
 
   
 }
+/* html, body, #app, #app>div {
+  height: 100%
+} */
 .Brand{
   margin: auto;
 
+}
+.Contacts{
+  /* border-left: solid; */
+  /* border-right: solid; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 #AboutButton{
   background-color: transparent;
   border:transparent;
 }
-#ContactButton:focus{outline: 0;}
+#AboutButton:focus{outline: 0;}
 
 #SearchBox{
   height: 40px;
@@ -100,7 +110,27 @@
   padding: 0px;
 
 }
+#Functions{
+  display: inline-block;
+}
+#ExportButton{
+  float: right;
+  display: inline;
+  background-color: transparent;
+  border: 0;
+}
+#ExportButton:focus{outline: 0;}
 
+#AddNewButton{
+  float: right;
+  display: inline;
+  background-color: transparent;
+  border: 0;
+}
+#AddNewButton:focus{outline:0}
+#AddNewIcon{
+  height:25px;
+}
 
 @media screen and (max-width: 600px){
   .NavBar{
@@ -132,6 +162,7 @@
     /* margin:0px; */
     padding: 0px;
   }
+  
 
   .Body{
     display: grid;
