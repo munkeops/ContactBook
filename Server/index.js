@@ -9,8 +9,7 @@ const app = express();
 
 // mongoose.Promise = global.Promise;
 // mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/node-react-starter`);
-// let string1="mongodb+srv://rohan:<password>@cluster0-ltvyg.gcp.mongodb.net/test?retryWrites=true&w=majority"
-// mongoose.connect(string1)
+
 var fs = require('fs');
  
 var contents = fs.readFileSync('info.txt', 'utf8');
