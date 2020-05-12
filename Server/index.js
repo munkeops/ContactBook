@@ -11,8 +11,12 @@ const app = express();
 // mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/node-react-starter`);
 // let string1="mongodb+srv://rohan:<password>@cluster0-ltvyg.gcp.mongodb.net/test?retryWrites=true&w=majority"
 // mongoose.connect(string1)
+var fs = require('fs');
+ 
+var contents = fs.readFileSync('info.txt', 'utf8');
+// console.log(contents)
 
-const string1="mongodb+srv://rohan:rohan123@cluster0-ltvyg.gcp.mongodb.net/test?retryWrites=true&w=majority "// add your database string here
+const string1=contents// add your database string here
 mongoose.connect(string1,{useNewUrlParser:true,useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false}); 
 
 app.use(bodyParser.json());
