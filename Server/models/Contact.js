@@ -1,17 +1,22 @@
+'use strict';
 
 
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const contactSchema = new Schema({
-    name: {
+    username: {
         type: String,
-        required: 'Kindly enter the name'
+        required: 'Kindly enter the username'
       },
-    number:{
+    password:{
         type: String,
-        required: 'Kindly enter the number'
-      }
+        required: 'Kindly enter the password'
+      },
+    contacts:[{
+      name:String,
+      number:String,
+    }]
 })
 
 mongoose.model('contacts', contactSchema);

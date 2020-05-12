@@ -60,7 +60,7 @@ function Body(){
             <img src="https://img.icons8.com/offices/30/000000/export-csv.png"/>EXPORT
           </button>
           <button id="AddNewButton">
-            <img id="AddNewIcon" src="https://img.icons8.com/color/50/000000/add.png"/>ADD NEW
+            <img id="AddNewIcon" src="https://img.icons8.com/color/50/000000/add.png"/>ADD
           </button>
         </div>
         <ul id="ListContacts">
