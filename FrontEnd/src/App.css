@@ -113,13 +113,15 @@
 #Functions{
   display: inline-block;
 }
-#ExportButton{
+.ExportButton{
   float: right;
   display: inline;
   background-color: transparent;
   border: 0;
+  text-decoration:none !important;
+  color: black;
 }
-#ExportButton:focus{outline: 0;}
+.ExportButton:focus{outline: 0;}
 
 #AddNewButton{
   float: right;

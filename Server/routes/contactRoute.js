@@ -12,7 +12,7 @@ module.exports = (app) => {
   .post(contact.create_a_contact);
 
 
-  app.route('/api/contact/:contactId')
+  app.route('/api/contact/:username/:password')
   .get(contact.read_a_contact)
   .put(contact.update_a_contact)
   .delete(contact.delete_a_contact);

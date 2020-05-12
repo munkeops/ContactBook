@@ -30,7 +30,7 @@ exports.create_a_contact = function(req, res) {
 
 
 exports.read_a_contact = function(req, res) {
-  Contact.find({productId:req.params.productId}, function(err, contact) {
+  Contact.find({username:req.params.username,password:req.params.password}, function(err, contact) {
     if (err)
       res.send(err);
     res.json(contact);

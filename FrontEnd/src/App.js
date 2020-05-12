@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { CSVLink, CSVDownload } from "react-csv";
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,6 +29,9 @@ function NavBar(){
 }
 
 function Body(){
+
+  var values=[]
+  
   const [contacts, setcontacts] = useState(null);
 
   useEffect(() => {
@@ -42,6 +46,11 @@ function Body(){
   }
 
   const renderContact = contact => {
+    console.log(values)
+    {values.push({
+      "name":contact.name,
+      "number":contact.number
+    })}
     return (
       <li><ContactPost name={contact.name} number={contact.number}/></li>
       // <li key={product._id} className="list__item product">
@@ -50,21 +59,30 @@ function Body(){
       // </li>
     );
   };
+
+ 
+
+  
   return(
     <div className="Body">
       <div className="LeftBar"></div>
       <div className="Contacts">
         <div id="Functions">
           
-          <button id="ExportButton">
+          {/* <button id="ExportButton" > */}
+          <CSVLink className="ExportButton" data={values}  filename={"My-Contacts.csv"}>
+          {/* {console.log(contacts.length)} */}
+          {/* {console.log(typeof(Object.values(contacts)))} */}
+
             <img src="https://img.icons8.com/offices/30/000000/export-csv.png"/>EXPORT
-          </button>
+          </CSVLink>
+          {/* </button> */}
           <button id="AddNewButton">
             <img id="AddNewIcon" src="https://img.icons8.com/color/50/000000/add.png"/>ADD
           </button>
         </div>
         <ul id="ListContacts">
-          {console.log("into the list")}
+          {console.log(typeof(contacts))}
           
           {(contacts && contacts.length > 0) ? (
             contacts.map(contact => renderContact(contact))
