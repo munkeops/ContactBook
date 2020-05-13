@@ -1,0 +1,100 @@
+
+
+.LoginFormBox{
+    border-color: whitesmoke;
+    background-color: tomato;
+    position: absolute; 
+    top: 20% ; 
+    left:35%;   
+     /* transform: translate(-50%,-50%);  */
+    width: 30%;
+    height: 450px;
+    border-radius: 15px;
+    
+    /* border: solid; */
+
+    /* margin: auto; */
+
+    
+    display: flex;
+    flex-direction: column;
+    display: block;
+    /* justify-content: center; */
+    align-items: center; 
+    text-align: center;
+
+}
+
+html, body, .LoginPage {
+    height: 100%
+  }
+.LoginPage{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: auto; */
+    /* align-self: center; */
+    /* margin-top: auto; */
+}
+#LoginForm{
+    /* margin: auto; */
+    /* margin:auto; */
+    /* align-content: ; */
+    /* display: inline-block; */
+    /* margin-top: 5%; */
+}
+#Header{
+    margin-top: 22%;
+}
+#LoginButton{
+    border-radius: 5px;
+    border:transparent;
+    background-color:aqua;
+    border: solid;
+
+}
+#LoginInput{
+    border-radius: 5px;
+    border: transparent;
+    border: solid;
+}
+.Link{
+    text-decoration:none;
+}
+@media screen and (max-width: 1000px){
+    .LoginFormBox{
+        /* position: relative; */
+        top:20%;
+        left:25%;
+        /* height: 100%; */
+        width: 50%;
+    }
+
+}
+@media screen and (max-width: 600px){
+    .LoginFormBox{
+        /* position: relative; */
+        top:0%;
+        left:0%;
+        height: 100%;
+        width: 100%;
+    }
+    
+    /* #LoginInput{
+        width: 100%;
+    } */
+    /* #LoginForm{
+        width: 100%;
+    } */
+    #LoginFormLabel{
+        display: block;
+        width: 100%;
+        flex:1;
+    }
+    #Header{
+        margin-top: 40%;
+    }
+
+
+}

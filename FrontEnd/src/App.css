@@ -36,8 +36,10 @@
     transform: rotate(360deg);
   }
 } */
-
-.App{
+html, body, .App {
+  height: 100%
+}
+.HomePage{
   display: grid;
   grid-template-areas: 
     "NavBar"

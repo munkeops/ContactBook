@@ -7,9 +7,12 @@ import {
   Switch,
   Route,
   useParams,
+  Link
 } from 'react-router-dom';
 // import ReactSearchBox from 'react-search-box'
 import ContactPost from "./ContactPost.js"
+import LoginPage from "./Login.js"
+
 import ContactService from './services/ContactService';
 // import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
 // import Home from './Home';
@@ -22,8 +25,7 @@ function NavBar(){
       <div className="NavBar">
         <div className="Brand"><p>ContactBook</p></div>
         <div className="SearchBar"><input id="SearchBox" type="text" placeholder="Search.."/><button id="SearchButton"><img id ="SearchIcon"src="https://img.icons8.com/material-outlined/24/000000/search.png"/></button></div>
-        <div className="About"><button id="AboutButton">About</button></div>
-                 
+        <div className="About"><Link to="/login"><button id="AboutButton">Logout</button></Link></div>                 
       </div>
   )  
 }
@@ -101,14 +103,29 @@ function Body(){
   )
 }
 
-
+function HomePage(){
+  return(
+    <div className="HomePage">
+      <NavBar/>
+      <Body/>
+    </div>
+  )
+}
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar/>
-      <Body/>
+      {/* <div className="Login"></div> */}
+      <Router>
+        <Switch>
+          <Route exact path='/login' component={LoginPage}></Route>
+          <Route exact path='/home' component={HomePage}></Route>
+        </Switch>
+      </Router>
+      
+        
+      {/* </div> */}
       
     </div>
   );
