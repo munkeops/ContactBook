@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+
 import './App.css';
 import { CSVLink, CSVDownload } from "react-csv";
 import {
@@ -30,11 +31,17 @@ function NavBar(){
   )  
 }
 
-function Body(){
+function Body(props){
 
   var values=[]
   
   const [contacts, setcontacts] = useState(null);
+    // Declare a new state variable, which we'll call "count"
+  const [viewAddContact, setview] = useState(false);
+
+  const [newContactName, setName] = useState('')
+  const [newContactNumber, setNumber] = useState('')
+
 
   useEffect(() => {
     if(!contacts) {
@@ -42,7 +49,8 @@ function Body(){
     }
   })
   const getContacts = async () => {
-    let res = await ContactService.getAll();
+    // console.log("user = "+props.user,password)
+    let res = await ContactService.getAll(props.user,props.password);
     console.log(res);
     setcontacts(res);
   }
@@ -62,7 +70,28 @@ function Body(){
     );
   };
 
- 
+  
+
+  function clearNewCon(){
+
+    setview(false);
+    setNumber("");
+    setName("");
+
+  }
+  function saveNewCon(){
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: newContactName,number:newContactNumber})
+    };
+    console.log('/api/contact/'+props.user)
+    fetch('/api/contact/'+props.user, requestOptions)
+        .then(response => console.log(response.json()))
+      
+    clearNewCon()
+        // .then(data => this.setState({ postId: data.id }));
+  }
 
   
   return(
@@ -71,18 +100,33 @@ function Body(){
       <div className="Contacts">
         <div id="Functions">
           
-          {/* <button id="ExportButton" > */}
           <CSVLink className="ExportButton" data={values}  filename={"My-Contacts.csv"}>
-          {/* {console.log(contacts.length)} */}
-          {/* {console.log(typeof(Object.values(contacts)))} */}
-
             <img src="https://img.icons8.com/offices/30/000000/export-csv.png"/>EXPORT
           </CSVLink>
-          {/* </button> */}
-          <button id="AddNewButton">
+
+          <button id="AddNewButton" onClick={() => setview(true)}>
             <img id="AddNewIcon" src="https://img.icons8.com/color/50/000000/add.png"/>ADD
           </button>
+
         </div>
+        {
+          viewAddContact && 
+          // <AddContact/>
+          <div className="AddContact">
+            <img id="Dp2" src="https://img.icons8.com/pastel-glyph/64/000000/person-male.png"/>
+            <div className="NewConInput">
+              <label id="newConLabels">
+                Name:<br/><input id="newConForm" type="text" value={newContactName} placeholder=" eg. John Doe" onInput={e => setName(e.target.value)}/>
+
+              </label >
+              <label id="newConLabels">
+                Number:<br/>  <input id="newConForm" value={newContactNumber} placeholder=" eg. 9998887776"onInput={e => setNumber(e.target.value)}/>
+              </label>
+            </div>
+            <button className="SaveNew" onClick={()=>saveNewCon()}><img id ="SaveImg"src="https://img.icons8.com/color/48/000000/checked--v1.png"/></button>
+            <button className="CancelNew" onClick={()=>clearNewCon()}><img id="CancelImg"src="https://img.icons8.com/color/48/000000/cancel--v1.png"/></button>
+          </div>
+        }
         <ul id="ListContacts">
           {console.log(typeof(contacts))}
           
@@ -91,6 +135,7 @@ function Body(){
           ) : (
             <p>No contacts found</p>
           )}
+          
           {/* <li><ContactPost name="Rohan" number="9998887776"/></li>
           <li><ContactPost name="Raghav" number="9998887776"/></li>
           <li><ContactPost name="Qurram" number="9998887776"/></li>
@@ -103,24 +148,27 @@ function Body(){
   )
 }
 
-function HomePage(){
+function HomePage(props){
   return(
     <div className="HomePage">
       <NavBar/>
-      <Body/>
+      <Body user={props.user} setUsername={props.setUsername} password={props.password} setPassword={props.setPassword}/>
     </div>
   )
 }
 
 
 function App() {
+
+  const [user, setUsername] = useState("rohan9025");
+  const [password,setPassword]=useState("rohan123");
   return (
     <div className="App">
       {/* <div className="Login"></div> */}
       <Router>
         <Switch>
-          <Route exact path='/login' component={LoginPage}></Route>
-          <Route exact path='/home' component={HomePage}></Route>
+          <Route exact path='/login' ><LoginPage user={user} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
+          <Route exact path='/home' ><HomePage user={user} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
         </Switch>
       </Router>
       

@@ -8,14 +8,17 @@ module.exports = (app) => {
 
   var contact = require('../controllers/contactController');
   app.route('/api/contact')
-  .get(contact.list_all_contacts)
-  .post(contact.create_a_contact);
+  .get(contact.list_all_users)
+  .post(contact.create_a_user);
 
 
   app.route('/api/contact/:username/:password')
-  .get(contact.read_a_contact)
-  .put(contact.update_a_contact)
-  .delete(contact.delete_a_contact);
+  .get(contact.read_a_user)
+  .put(contact.update_a_user)
+  .delete(contact.delete_a_user);
+
+  app.route('/api/contact/:username')
+  .post(contact.addContact);
 
 };
 

@@ -11,7 +11,7 @@
     "http-proxy-middleware": "^1.0.3",
     "jquery": "^3.5.1",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.0.1",
+    "react-bootstrap": "^0.32.4",
     "react-csv": "^2.0.3",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",

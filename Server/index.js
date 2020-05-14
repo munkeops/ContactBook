@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 // IMPORT MODELS
 require('./models/Contact');
@@ -16,12 +18,27 @@ var contents = fs.readFileSync('info.txt', 'utf8');
 // console.log(contents)
 
 const string1=contents// add your database string here
-mongoose.connect(string1,{useNewUrlParser:true,useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false}); 
+mongoose.connect(string1,{useNewUrlParser:true,useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false},function(err) {
+  if (err) {
+    throw err;
+  } else {
+    console.log(`Successfully connected to database`);
+  }
+}); 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json())
-
+// app.use(cookieParser());
+// app.use(session({
+//   key: 'user_sid',
+//   secret: 'somerandonstuffs',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//       expires: 600000
+//   }
+// }));
 //IMPORT ROUTES
 require('./routes/contactRoute')(app);
 

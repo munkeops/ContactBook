@@ -4,7 +4,7 @@ import "./Login.css";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 
-function LoginPage(){
+function LoginPage(props){
 
     
 // const [email, setEmail] = useState("");
@@ -16,6 +16,7 @@ function LoginPage(){
 
   function handleSubmit(event) {
     event.preventDefault();
+    
   }
     return(
       <div className="LoginPage">
@@ -46,7 +47,7 @@ function LoginPage(){
             <form id="LoginForm" onSubmit={handleSubmit}>
                 <label id="LoginInputlabel">
                     Username:<br/>
-                    <input id="LoginInput" type="text" name="username" />
+                    <input id="LoginInput" type="text" name="username" onInput={e => props.setUsername(e.target.value)} /> 
 
                 </label><br/>
                 <label id="LoginInputlabel">
@@ -56,7 +57,7 @@ function LoginPage(){
                 <br/>
                 
                 
-                <input id="LoginButton"type="submit" value="Login" />
+                <Link to="/home"><input id="LoginButton"type="submit" value="Login"onInput={e => props.setPassword(e.target.value)} /></Link>
                 <br/>
                 <br/>
                 <label>

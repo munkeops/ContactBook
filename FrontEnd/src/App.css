@@ -50,6 +50,7 @@ html, body, .App {
   display: grid;
   grid-template-areas: 
   "LeftBar Contacts RightBar";
+  grid-template-columns: 30% 40% 30%;
   
 }
 
@@ -83,6 +84,64 @@ html, body, .App {
   height: 100%;
   display: flex;
   flex-direction: column;
+  /* width: 200px; */
+}
+.AddContact{
+  border:transparent;
+  background-color: wheat;
+  width: auto;
+  /* padding: auto; */
+  padding-top: 10px;
+  /* padding-left: 20px; */
+  border-radius: 5px;
+  height:100px;
+  /* text-align: center; */
+  display: flex;
+
+}
+.CancelNew{
+  margin-top: 30px;
+
+  /* margin-left: 10px; */
+  height: 30px;
+  background-color: transparent;
+  border: transparent;
+}
+.CancelNew:focus{outline: 0;}
+.SaveNew{
+  margin-top: 30px;
+
+  /* margin-left: 50px; */
+  height: 30px;
+  background-color: transparent;
+  border: transparent;
+  /* width: 20px; */
+}
+.SaveNew:focus{outline: 0;}
+
+#CancelImg{
+  height: 100%;
+}
+#SaveImg{
+  height: 100%;
+}
+#Dp2{
+  height:50px;
+  margin-left: 20px;
+  /* border:solid; */
+  border-radius: 40px;
+  background-color:lightgreen;
+  margin-top: 20px;
+}
+#newConForm{
+  border-radius: 5px;
+  border:transparent;
+}
+#newConLabels{
+  margin-left: 20px;
+  margin-top: 10px;
+  /* padding-left: 5px; */
+
 }
 #AboutButton{
   background-color: transparent;
@@ -136,7 +195,7 @@ html, body, .App {
   height:25px;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 900px){
   .NavBar{
     height: 150px;
     grid-template-areas:
@@ -172,6 +231,15 @@ html, body, .App {
     display: grid;
     grid-template-areas: 
     "Contacts";    
+    grid-template-columns: 100%;
+
   }
   
+}
+
+@media screen and (max-width: 1360px){
+  .AddContact{
+    height:150px;
+  }
+
 }

@@ -7,52 +7,62 @@ Contact = mongoose.model('contacts');
 
 
 
+exports.addContact = function (req, res, next)
+{
+var contact = {"name": req.body.name, "number": req.body.number};
+Contact.findOneAndUpdate({username: req.params.username}, {$push: {contacts: contact}},function(err, user) {
+  if (err)
+    res.send(err);
+  res.json(user);
+});
+};
 
-exports.list_all_contacts = function(req, res) {
-  Contact.find({}, function(err, contact) {
+
+exports.list_all_users = function(req, res) {
+  Contact.find({}, function(err, user) {
     if (err)
       res.send(err);
-    res.json(contact);
+    res.json(user);
   });
 };
 
 
 
 
-exports.create_a_contact = function(req, res) {
-  var new_contact = new Contact(req.body);
-  new_contact.save(function(err, contact) {
+exports.create_a_user = function(req, res) {
+  var new_user = new Contact(req.body);
+  new_user.save(function(err, user) {
     if (err)
       res.send(err);
-    res.json(contact);
+    res.json(user);
   });
 };
 
 
-exports.read_a_contact = function(req, res) {
-  Contact.find({username:req.params.username,password:req.params.password}, function(err, contact) {
+exports.read_a_user = function(req, res) {
+  Contact.find({username:req.params.username,password:req.params.password}, function(err, user) {
     if (err)
       res.send(err);
-    res.json(contact);
+    res.json(user);
   });
 };
 
 
-exports.update_a_contact = function(req, res) {
-  Contact.findOneAndUpdate({productId: req.params.productId}, req.body, {new: true}, function(err, contact) {
+exports.update_a_user = function(req, res) {
+  Contact.findOneAndUpdate({productId: req.params.username}, req.body, {new: true}, function(err, user) {
     if (err)
       res.send(err);
-    res.json(contact);
+    res.json(user);
   });
 };
 
 
-exports.delete_a_contact = function(req, res) {
+exports.delete_a_user = function(req, res) {
 
 
   Contact.remove({
-    _id: req.params.productId
-  }, function(err, contact) {
+    username: req.params.username
+  }, function(err, user) {
     if (err)
       res.send(err);
     res.json({ message: 'Contact successfully deleted' });
