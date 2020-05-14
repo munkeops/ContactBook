@@ -61,12 +61,12 @@ html, body, .App {
   grid-template-areas:
   "Brand SearchBar About";
 }
-.About{
+.Logout{
   margin: auto;
 
 }
 .SearchBar{
-  display: inline;
+  display: inline-flex;
   margin: auto;  
 
   
@@ -76,6 +76,7 @@ html, body, .App {
 } */
 .Brand{
   margin: auto;
+  height: 100%;
 
 }
 .Contacts{
@@ -111,14 +112,20 @@ html, body, .App {
 .SaveNew{
   margin-top: 30px;
 
-  /* margin-left: 50px; */
+  margin-left: 20px;
   height: 30px;
   background-color: transparent;
   border: transparent;
   /* width: 20px; */
 }
 .SaveNew:focus{outline: 0;}
+.NewConInput{
+  display: inline-flex;
+}
 
+#Functions{
+  display: inline-flex;
+}
 #CancelImg{
   height: 100%;
 }
@@ -136,9 +143,12 @@ html, body, .App {
 #newConForm{
   border-radius: 5px;
   border:transparent;
+  height: 25px;
+  padding-left: 10px;
+  padding: auto;
 }
 #newConLabels{
-  margin-left: 20px;
+  margin-left: 25px;
   margin-top: 10px;
   /* padding-left: 5px; */
 
@@ -158,7 +168,7 @@ html, body, .App {
 #SearchBox:focus{outline: 0;}
 
 #SearchButton{
-  height: 39px;
+  height: 40px;
   border-radius: 50px;
   background-color: aqua;
   margin: auto;
@@ -176,26 +186,38 @@ html, body, .App {
 }
 .ExportButton{
   float: right;
-  display: inline;
+  display: inline-flex;
   background-color: transparent;
   border: 0;
   text-decoration:none !important;
   color: black;
+  font-size: 20px;
+
 }
 .ExportButton:focus{outline: 0;}
 
 #AddNewButton{
   float: right;
-  display: inline;
+  display: inline-flex;
   background-color: transparent;
   border: 0;
+  font-size: 20px;
 }
 #AddNewButton:focus{outline:0}
+#ExportIcon{
+  height:25px;
+  
+}
 #AddNewIcon{
   height:25px;
+  margin-top: -1px;
+
 }
 
 @media screen and (max-width: 900px){
+  .NewConInput{
+    flex-direction: row !important;
+  }
   .NavBar{
     height: 150px;
     grid-template-areas:
@@ -241,5 +263,16 @@ html, body, .App {
   .AddContact{
     height:150px;
   }
+  .NewConInput{
+    flex-direction: column;
+  }
 
 }
+
+@media screen and (max-width: 500px){
+  .NewConInput{
+    flex-direction: column !important;
+  }
+}
+
+

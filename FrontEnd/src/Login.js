@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function LoginPage(props){
 
     
-// const [email, setEmail] = useState("");
+const [hiddenstate, sethiddenstate] = useState(false);
 //   const [password, setPassword] = useState("");
 
 //   function validateForm() {
@@ -17,6 +17,9 @@ function LoginPage(props){
   function handleSubmit(event) {
     event.preventDefault();
     
+  }
+  function toggleState(){
+    sethiddenstate(!hiddenstate)
   }
     return(
       <div className="LoginPage">
@@ -45,19 +48,26 @@ function LoginPage(props){
                 </Button> */}
             {/* </form> */}
             <form id="LoginForm" onSubmit={handleSubmit}>
-                <label id="LoginInputlabel">
-                    Username:<br/>
-                    <input id="LoginInput" type="text" name="username" onInput={e => props.setUsername(e.target.value)} /> 
+                {/* <label id="LoginInputlabel"> */}
+                Username:<br/>
+                <input id="LoginInput" type="text" name="username" onInput={e => props.setUsername(e.target.value)} /> 
 
-                </label><br/>
-                <label id="LoginInputlabel">
-                    Password:<br/>
-                    <input id="LoginInput" type="password" name="password" />
-                </label>
+                {/* </label> */}
                 <br/>
+                {/* <label id="LoginInputlabel"> */}
+                <div className="LoginText">
+                <p>Password:</p>
                 
+                </div>
+                <div id="passwordBox">
+                  <input id="LoginInput" type={hiddenstate?"text":"password"} name="password" onInput={e => props.setPassword(e.target.value)} />
+                  <button id="toggleHidden" onClick={()=>toggleState()}>{hiddenstate?<img id="hiddenEye" src="https://img.icons8.com/material-outlined/24/000000/visible.png"/>:<img id="hiddenEye" src="https://img.icons8.com/material-sharp/24/000000/visible.png"/>}</button> 
+                </div>
+                {/* </label> */}
+
+                <br/>               
                 
-                <Link to="/home"><input id="LoginButton"type="submit" value="Login"onInput={e => props.setPassword(e.target.value)} /></Link>
+                <Link to="/home"><input id="LoginButton"type="submit" value="Login" /></Link>
                 <br/>
                 <br/>
                 <label>

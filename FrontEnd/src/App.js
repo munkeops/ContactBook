@@ -2,12 +2,14 @@ import React,{ useState, useEffect } from 'react';
 // import logo from './logo.svg';
 
 import './App.css';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink
+  // , CSVDownload 
+} from "react-csv";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams,
+  // useParams,
   Link
 } from 'react-router-dom';
 // import ReactSearchBox from 'react-search-box'
@@ -26,7 +28,7 @@ function NavBar(){
       <div className="NavBar">
         <div className="Brand"><p>ContactBook</p></div>
         <div className="SearchBar"><input id="SearchBox" type="text" placeholder="Search.."/><button id="SearchButton"><img id ="SearchIcon"src="https://img.icons8.com/material-outlined/24/000000/search.png"/></button></div>
-        <div className="About"><Link to="/login"><button id="AboutButton">Logout</button></Link></div>                 
+        <div className="Logout"><Link to="/login"><button id="AboutButton">Logout</button></Link></div>                 
       </div>
   )  
 }
@@ -49,18 +51,18 @@ function Body(props){
     }
   })
   const getContacts = async () => {
-    // console.log("user = "+props.user,password)
+    console.log("user = "+props.user+props.password)
     let res = await ContactService.getAll(props.user,props.password);
-    console.log(res);
+    // console.log(res);
     setcontacts(res);
   }
 
   const renderContact = contact => {
-    console.log(values)
-    {values.push({
+    // console.log(values)
+    values.push({
       "name":contact.name,
       "number":contact.number
-    })}
+    })
     return (
       <li><ContactPost name={contact.name} number={contact.number}/></li>
       // <li key={product._id} className="list__item product">
@@ -93,15 +95,12 @@ function Body(props){
         // .then(data => this.setState({ postId: data.id }));
   }
 
-  
-  return(
-    <div className="Body">
-      <div className="LeftBar"></div>
-      <div className="Contacts">
-        <div id="Functions">
+  function Functions(){
+    return(
+      <div id="Functions">
           
           <CSVLink className="ExportButton" data={values}  filename={"My-Contacts.csv"}>
-            <img src="https://img.icons8.com/offices/30/000000/export-csv.png"/>EXPORT
+            <img id="ExportIcon"src="https://img.icons8.com/offices/30/000000/export-csv.png"/>EXPORT
           </CSVLink>
 
           <button id="AddNewButton" onClick={() => setview(true)}>
@@ -109,6 +108,16 @@ function Body(props){
           </button>
 
         </div>
+    )
+
+  }
+
+  
+  return(
+    <div className="Body">
+      <div className="LeftBar"></div>
+      <div className="Contacts">
+        <Functions/>        
         {
           viewAddContact && 
           // <AddContact/>
@@ -128,18 +137,13 @@ function Body(props){
           </div>
         }
         <ul id="ListContacts">
-          {console.log(typeof(contacts))}
+          {/* {console.log(typeof(contacts))} */}
           
           {(contacts && contacts.length > 0) ? (
             contacts.map(contact => renderContact(contact))
           ) : (
             <p>No contacts found</p>
           )}
-          
-          {/* <li><ContactPost name="Rohan" number="9998887776"/></li>
-          <li><ContactPost name="Raghav" number="9998887776"/></li>
-          <li><ContactPost name="Qurram" number="9998887776"/></li>
-          <li><ContactPost name="Anchit" number="9998887776"/></li> */}
 
         </ul>
       </div>
@@ -160,8 +164,8 @@ function HomePage(props){
 
 function App() {
 
-  const [user, setUsername] = useState("rohan9025");
-  const [password,setPassword]=useState("rohan123");
+  const [user, setUsername] = useState("");
+  const [password,setPassword]=useState("");
   return (
     <div className="App">
       {/* <div className="Login"></div> */}

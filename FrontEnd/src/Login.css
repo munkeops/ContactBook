@@ -37,13 +37,37 @@ html, body, .LoginPage {
     /* align-self: center; */
     /* margin-top: auto; */
 }
-#LoginForm{
+/* #LoginForm{ */
     /* margin: auto; */
     /* margin:auto; */
     /* align-content: ; */
     /* display: inline-block; */
     /* margin-top: 5%; */
+/* } */
+#passwordBox{
+    /* display: flex; */
+    display: inline-flex;
+    text-align: center;
 }
+#toggleHidden{
+    /* margin-top: 20px; */
+    /* padding-top: 10px; */
+    /* border-left: solid; */
+    height: 20px;
+    background-color: transparent;
+    border: transparent;
+}
+#hiddenEye{
+    /* margin-top: 10px; */
+    /* padding-top: 10px; */
+    /* border-left-color: tomato;
+    border-left: tomato; */
+
+    margin-left: -40px;
+    margin-top: -1.5px;
+}
+#toggleHidden:focus{outline: 0;}
+
 #Header{
     margin-top: 22%;
 }
@@ -58,6 +82,9 @@ html, body, .LoginPage {
     border-radius: 5px;
     border: transparent;
     border: solid;
+    height: 100%;
+    /* margin-top: -10px; */
+    /* padding-top: -10px; */
 }
 .Link{
     text-decoration:none;
