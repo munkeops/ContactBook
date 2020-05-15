@@ -12,7 +12,9 @@
     "start": "node index.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix FrontEnd && npm run build --prefix FrontEnd"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -25,5 +27,8 @@
   "devDependencies": {
     "concurrently": "^5.2.0",
     "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
