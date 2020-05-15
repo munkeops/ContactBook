@@ -45,7 +45,7 @@ require('./routes/contactRoute')(app);
 
 if (process.env.NODE_ENV === 'production') {
 
-  string1=MONGO_STRING
+  string1=process.env.MONGO_STRING
   app.use(express.static('FrontEnd/build'));
 
   const path = require('path');
