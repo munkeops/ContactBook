@@ -47,27 +47,23 @@ const [hiddenstate, sethiddenstate] = useState(false);
                 Login
                 </Button> */}
             {/* </form> */}
-            <form id="LoginForm" onSubmit={handleSubmit}>
+            {/* <form id="LoginForm" onSubmit={handleSubmit}> */}
                 {/* <label id="LoginInputlabel"> */}
-                Username:<br/>
+                <p>Username:</p>
                 <input id="LoginInput" type="text" name="username" onInput={e => props.setUsername(e.target.value)} /> 
 
-                {/* </label> */}
-                <br/>
-                {/* <label id="LoginInputlabel"> */}
-                <div className="LoginText">
-                <p>Password:</p>
-                
-                </div>
+                {/* <div className="LoginText"> */}
+                  <p>Password:</p>                
+                {/* </div> */}
+
                 <div id="passwordBox">
                   <input id="LoginInput" type={hiddenstate?"text":"password"} name="password" onInput={e => props.setPassword(e.target.value)} />
                   <button id="toggleHidden" onClick={()=>toggleState()}>{hiddenstate?<img id="hiddenEye" src="https://img.icons8.com/material-outlined/24/000000/visible.png"/>:<img id="hiddenEye" src="https://img.icons8.com/material-sharp/24/000000/visible.png"/>}</button> 
                 </div>
                 {/* </label> */}
 
-                <br/>               
-                
-                <Link to="/home"><input id="LoginButton"type="submit" value="Login" /></Link>
+
+                <Link to="/home"><button id="LoginButton"  >Login</button></Link>
                 <br/>
                 <br/>
                 <label>
@@ -79,7 +75,7 @@ const [hiddenstate, sethiddenstate] = useState(false);
                 <br/>
 
 
-            </form>
+            {/* </form> */}
           </div>
       </div>
     )

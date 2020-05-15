@@ -39,6 +39,7 @@
 html, body, .App {
   height: 100%
 }
+
 .HomePage{
   display: grid;
   grid-template-areas: 
@@ -60,6 +61,7 @@ html, body, .App {
   display: grid;
   grid-template-areas:
   "Brand SearchBar About";
+  grid-gap: 5px;
 }
 .Logout{
   margin: auto;
@@ -76,7 +78,7 @@ html, body, .App {
 } */
 .Brand{
   margin: auto;
-  height: 100%;
+  /* padding: auto; */
 
 }
 .Contacts{
@@ -215,15 +217,23 @@ html, body, .App {
 }
 
 @media screen and (max-width: 900px){
+  
   .NewConInput{
     flex-direction: row !important;
+  }
+  .Brand{
+    height: 100%;
+  }
+  .Logout{
+    height: 100%;
   }
   .NavBar{
     height: 150px;
     grid-template-areas:
       "Brand"
+      "SearchBar"
       "About"
-      "SearchBar";
+      ;
       grid-template-rows: 33% 33% 33%;
   }
   .SearchBar{
@@ -273,6 +283,9 @@ html, body, .App {
   .NewConInput{
     flex-direction: column !important;
   }
+  
 }
+
+
 
 

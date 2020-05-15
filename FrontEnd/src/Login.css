@@ -3,12 +3,13 @@
 .LoginFormBox{
     border-color: whitesmoke;
     background-color: tomato;
-    position: absolute; 
-    top: 20% ; 
-    left:35%;   
+    /* margin-top: 10%; */
+    /* position: absolute;  */
+    /* top: 20% ;  */
+    /* left:35%;    */
      /* transform: translate(-50%,-50%);  */
     width: 30%;
-    height: 450px;
+    height: 500px;
     border-radius: 15px;
     
     /* border: solid; */
@@ -24,12 +25,15 @@
     text-align: center;
 
 }
-
+#root{
+    height: 100%;
+}
 html, body, .LoginPage {
-    height: 100%
+    height: 100vh
   }
 .LoginPage{
     height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,10 +48,14 @@ html, body, .LoginPage {
     /* display: inline-block; */
     /* margin-top: 5%; */
 /* } */
+
 #passwordBox{
     /* display: flex; */
     display: inline-flex;
     text-align: center;
+    width: 100%;
+    /* margin: auto; */
+    padding-left: 20%;
 }
 #toggleHidden{
     /* margin-top: 20px; */
@@ -64,25 +72,30 @@ html, body, .LoginPage {
     border-left: tomato; */
 
     margin-left: -40px;
-    margin-top: -1.5px;
+    margin-top: 3px;
 }
 #toggleHidden:focus{outline: 0;}
 
 #Header{
-    margin-top: 22%;
+    margin-top: 20%;
 }
 #LoginButton{
-    border-radius: 5px;
+    /* border-radius: 5px; */
     border:transparent;
     background-color:aqua;
     border: solid;
+    height:40px;
+    width:80px;
+    margin-top: 25px;
+    border-radius: 15px;
 
 }
 #LoginInput{
     border-radius: 5px;
     border: transparent;
     border: solid;
-    height: 100%;
+    height: 30px;
+    width: 60%;
     /* margin-top: -10px; */
     /* padding-top: -10px; */
 }
@@ -102,10 +115,21 @@ html, body, .LoginPage {
 @media screen and (max-width: 600px){
     .LoginFormBox{
         /* position: relative; */
-        top:0%;
-        left:0%;
+        /* top:0%;
+        left:0%; */
+        margin-top: 0;
+        margin: 0;
         height: 100%;
         width: 100%;
+    }
+    #LoginInput{
+        width: 80%;
+        /* margin-top: -10px; */
+        /* padding-top: -10px; */
+    }
+    #passwordBox{
+        
+        padding-left: 10%;
     }
     
     /* #LoginInput{
@@ -114,11 +138,7 @@ html, body, .LoginPage {
     /* #LoginForm{
         width: 100%;
     } */
-    #LoginFormLabel{
-        display: block;
-        width: 100%;
-        flex:1;
-    }
+    
     #Header{
         margin-top: 40%;
     }

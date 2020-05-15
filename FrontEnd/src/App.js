@@ -15,6 +15,8 @@ import {
 // import ReactSearchBox from 'react-search-box'
 import ContactPost from "./ContactPost.js"
 import LoginPage from "./Login.js"
+import Landing from "./Landing.js"
+
 
 import ContactService from './services/ContactService';
 // import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
@@ -28,7 +30,7 @@ function NavBar(){
       <div className="NavBar">
         <div className="Brand"><p>ContactBook</p></div>
         <div className="SearchBar"><input id="SearchBox" type="text" placeholder="Search.."/><button id="SearchButton"><img id ="SearchIcon"src="https://img.icons8.com/material-outlined/24/000000/search.png"/></button></div>
-        <div className="Logout"><Link to="/login"><button id="AboutButton">Logout</button></Link></div>                 
+        <div className="Logout"><Link to="/"><button id="AboutButton">Logout</button></Link></div>                 
       </div>
   )  
 }
@@ -162,6 +164,7 @@ function HomePage(props){
 }
 
 
+
 function App() {
 
   const [user, setUsername] = useState("");
@@ -171,6 +174,7 @@ function App() {
       {/* <div className="Login"></div> */}
       <Router>
         <Switch>
+          <Route exact path='/'><Landing/></Route>
           <Route exact path='/login' ><LoginPage user={user} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
           <Route exact path='/home' ><HomePage user={user} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
         </Switch>
