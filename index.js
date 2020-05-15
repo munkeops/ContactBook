@@ -17,7 +17,7 @@ var fs = require('fs');
 var contents = fs.readFileSync('info.txt', 'utf8');
 // console.log(contents)
 
-const string1=contents// add your database string here
+var string1=contents// add your database string here
 mongoose.connect(string1,{useNewUrlParser:true,useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false},function(err) {
   if (err) {
     throw err;
@@ -42,7 +42,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 //IMPORT ROUTES
 require('./routes/contactRoute')(app);
 
+
 if (process.env.NODE_ENV === 'production') {
+
+  string1=MONGO_STRING
   app.use(express.static('FrontEnd/build'));
 
   const path = require('path');
