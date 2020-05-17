@@ -15,8 +15,14 @@ var string1
 // if (process.env.NODE_ENV === 'development') {
 var fs = require('fs');
 
-var contents = fs.readFileSync('info.txt', 'utf8');
-string1=contents
+try{
+  var contents = fs.readFileSync('info.txt', 'utf8');
+  string1=contents
+}
+catch{
+  console.log("could not read from the file");
+}
+  
 
 // }
 
