@@ -16,7 +16,7 @@ function Landing(){
         </div>
         <div className="Text">
             <div className="LandingHeader">
-                <h1>ContactBooks</h1>
+                <h1>ContactBook</h1>
             </div>
             <div className="LandingNavigation">
                 <Link to="/login"><button id="landingNavBut">Login</button></Link>
