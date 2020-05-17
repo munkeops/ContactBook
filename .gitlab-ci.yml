@@ -27,9 +27,9 @@ stages:
 #         - master
 
 development:
-  type:deploy
-  stage:development
-  image:node:latest
+  type: deploy
+  stage: development
+  image: node:latest
   script:
       - dpl --provider=heroku --app=$HEROKU_APP_DEV --api-key=$HEROKU_API_KEY
   only:
