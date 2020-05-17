@@ -10,8 +10,7 @@
 
 
 heroku:
-  type: deploy
-  stage: production
+  stage: deploy
   # image: node:latest
   script:
       - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/contact-book-rn.git
