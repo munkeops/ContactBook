@@ -8,27 +8,22 @@ const session = require('express-session');
 require('./models/Contact');
 
 const app = express();
+var string1
 
 // mongoose.Promise = global.Promise;
 // mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/node-react-starter`);
-if (process.env.NODE_ENV === 'development') {
-  var fs = require('fs');
- 
-  var contents = fs.readFileSync('info.txt', 'utf8');
-  var string1=contents
+// if (process.env.NODE_ENV === 'development') {
+var fs = require('fs');
 
-}
+var contents = fs.readFileSync('info.txt', 'utf8');
+string1=contents
+
+// }
 
 // console.log(contents)
 
 // add your database string here
-mongoose.connect(string1,{useNewUrlParser:true,useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false},function(err) {
-  if (err) {
-    throw err;
-  } else {
-    console.log(`Successfully connected to database`);
-  }
-}); 
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -58,6 +53,15 @@ if (process.env.NODE_ENV === 'production') {
   })
 
 }
+
+mongoose.connect(string1,{useNewUrlParser:true,useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false},function(err) {
+  if (err) {
+    throw err;
+  } else {
+    console.log(`Successfully connected to database`);
+  }
+}); 
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
