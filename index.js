@@ -11,13 +11,17 @@ const app = express();
 
 // mongoose.Promise = global.Promise;
 // mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/node-react-starter`);
-
-var fs = require('fs');
+if (process.env.NODE_ENV === 'development') {
+  var fs = require('fs');
  
-var contents = fs.readFileSync('info.txt', 'utf8');
+  var contents = fs.readFileSync('info.txt', 'utf8');
+  var string1=contents
+
+}
+
 // console.log(contents)
 
-var string1=contents// add your database string here
+// add your database string here
 mongoose.connect(string1,{useNewUrlParser:true,useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false},function(err) {
   if (err) {
     throw err;
