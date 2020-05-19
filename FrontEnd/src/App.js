@@ -16,6 +16,7 @@ import {
 import ContactPost from "./ContactPost.js"
 import LoginPage from "./Login.js"
 import Landing from "./Landing.js"
+import Register from "./Register.js"
 
 
 import ContactService from './services/ContactService';
@@ -169,12 +170,14 @@ function App() {
 
   const [user, setUsername] = useState("");
   const [password,setPassword]=useState("");
+  
   return (
     <div className="App">
       {/* <div className="Login"></div> */}
       <Router>
         <Switch>
           <Route exact path='/'><Landing/></Route>
+          <Route exact path='/signup'><Register/></Route>
           <Route exact path='/login' ><LoginPage user={user} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
           <Route exact path='/home' ><HomePage user={user} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
         </Switch>

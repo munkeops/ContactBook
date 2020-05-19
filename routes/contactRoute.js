@@ -18,7 +18,8 @@ module.exports = (app) => {
   .delete(contact.delete_a_user);
 
   app.route('/api/contact/:username')
-  .post(contact.addContact);
+  .post(contact.addContact)
+  .get(contact.list_a_user);
 
 };
 

@@ -47,6 +47,14 @@ exports.read_a_user = function(req, res) {
   });
 };
 
+exports.list_a_user = function(req, res) {
+  Contact.find({username:req.params.username}, function(err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+};
+
 
 exports.update_a_user = function(req, res) {
   Contact.findOneAndUpdate({productId: req.params.username}, req.body, {new: true}, function(err, user) {
