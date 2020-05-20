@@ -86,14 +86,14 @@ function Body(props){
   }
   
 
-  function saveNewCon(){
+  async function saveNewCon(){
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: newContactName,number:newContactNumber})
     };
     console.log('/api/contact/'+props.user)
-    fetch('/api/contact/'+props.user, requestOptions)
+    await fetch('/api/contact/'+props.user, requestOptions)
         .then(response => console.log(response.json()))
       
     // forceUpdate()
