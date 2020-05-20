@@ -10,6 +10,7 @@
     "bootstrap": "^4.4.1",
     "http-proxy-middleware": "^1.0.3",
     "jquery": "^3.5.1",
+    "md5": "^2.2.1",
     "react": "^16.13.1",
     "react-csv": "^2.0.3",
     "react-dom": "^16.13.1",

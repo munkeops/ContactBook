@@ -1,5 +1,4 @@
 import React,{ useState, useEffect } from 'react';
-// import logo from './logo.svg';
 
 import './App.css';
 import { CSVLink
@@ -10,9 +9,9 @@ import {
   Switch,
   Route,
   // useParams,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom';
-// import ReactSearchBox from 'react-search-box'
 import ContactPost from "./ContactPost.js"
 import LoginPage from "./Login.js"
 import Landing from "./Landing.js"
@@ -20,24 +19,28 @@ import Register from "./Register.js"
 
 
 import ContactService from './services/ContactService';
-// import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
-// import Home from './Home';
-// import AboutUs from './AboutUs';
-// import ContactUs from './ContactUs';
 
-function NavBar(){
+
+function NavBar(props){
+
+  function logout(){
+    props.setUsername("")
+    props.setPassword("")
+  }
   
   return(
       <div className="NavBar">
         <div className="Brand"><p>ContactBook</p></div>
         <div className="SearchBar"><input id="SearchBox" type="text" placeholder="Search.."/><button id="SearchButton"><img id ="SearchIcon"src="https://img.icons8.com/material-outlined/24/000000/search.png"/></button></div>
-        <div className="Logout"><Link to="/"><button id="AboutButton">Logout</button></Link></div>                 
+        <div className="Logout"><Link to="/"><button id="AboutButton" onClick={()=>logout()}>Logout</button></Link></div>                 
       </div>
   )  
 }
 
+
 function Body(props){
 
+  // const forceUpdate = useForceUpdate();
   var values=[]
   
   const [contacts, setcontacts] = useState(null);
@@ -68,10 +71,7 @@ function Body(props){
     })
     return (
       <li><ContactPost name={contact.name} number={contact.number}/></li>
-      // <li key={product._id} className="list__item product">
-      //   {/* <h3 className="product__name">{contact.name}</h3>
-      //   <p className="product__description">{contact.number}</p> */}
-      // </li>
+      
     );
   };
 
@@ -84,6 +84,8 @@ function Body(props){
     setName("");
 
   }
+  
+
   function saveNewCon(){
     const requestOptions = {
       method: 'POST',
@@ -94,6 +96,8 @@ function Body(props){
     fetch('/api/contact/'+props.user, requestOptions)
         .then(response => console.log(response.json()))
       
+    // forceUpdate()
+    setcontacts(null)
     clearNewCon()
         // .then(data => this.setState({ postId: data.id }));
   }
@@ -115,7 +119,6 @@ function Body(props){
 
   }
 
-  
   return(
     <div className="Body">
       <div className="LeftBar"></div>
@@ -128,11 +131,11 @@ function Body(props){
             <img id="Dp2" src="https://img.icons8.com/pastel-glyph/64/000000/person-male.png"/>
             <div className="NewConInput">
               <label id="newConLabels">
-                Name:<br/><input id="newConForm" type="text" value={newContactName} placeholder=" eg. John Doe" onInput={e => setName(e.target.value)}/>
+                Name:<br/><input id="newConForm" type="text"  placeholder=" eg. John Doe" onInput={e => setName(e.target.value)}/>
 
               </label >
               <label id="newConLabels">
-                Number:<br/>  <input id="newConForm" value={newContactNumber} placeholder=" eg. 9998887776"onInput={e => setNumber(e.target.value)}/>
+                Number:<br/>  <input id="newConForm"  placeholder=" eg. 9998887776"onInput={e => setNumber(e.target.value)}/>
               </label>
             </div>
             <button className="SaveNew" onClick={()=>saveNewCon()}><img id ="SaveImg"src="https://img.icons8.com/color/48/000000/checked--v1.png"/></button>
@@ -158,7 +161,7 @@ function Body(props){
 function HomePage(props){
   return(
     <div className="HomePage">
-      <NavBar/>
+      <NavBar user={props.user} setUsername={props.setUsername} password={props.password} setPassword={props.setPassword}/>
       <Body user={props.user} setUsername={props.setUsername} password={props.password} setPassword={props.setPassword}/>
     </div>
   )
@@ -166,21 +169,31 @@ function HomePage(props){
 
 
 
+
+
 function App() {
 
   const [user, setUsername] = useState("");
   const [password,setPassword]=useState("");
+  const username1 = React.createContext("");
+
   
   return (
     <div className="App">
       {/* <div className="Login"></div> */}
       <Router>
-        <Switch>
+        {/* <Switch> */}
           <Route exact path='/'><Landing/></Route>
           <Route exact path='/signup'><Register/></Route>
           <Route exact path='/login' ><LoginPage user={user} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
-          <Route exact path='/home' ><HomePage user={user} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
-        </Switch>
+          <Route exact path='/home' render={()=>(
+            user=="" ?(
+              <Redirect to="/login"/>
+            ):(
+              <HomePage user={user} setUsername={setUsername} password={password} setPassword={setPassword} />
+            )
+            )}/>
+        {/* </Switch> */}
       </Router>
       
         

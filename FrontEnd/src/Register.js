@@ -6,6 +6,8 @@ import { Route, Redirect } from 'react-router'
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
+var md5 = require('md5');
+
 
 
 
@@ -35,9 +37,9 @@ function Register(){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: username,password:pass})
+            body: JSON.stringify({ username: username,password:md5(pass)})
           };
-        //   console.log('/api/contact/')
+          
           fetch('/api/contact/', requestOptions)
               .then(response => console.log(response.json()))
     }
@@ -54,6 +56,7 @@ function Register(){
     
     async function handlesubmit(){
         // (async () => {
+        console.log(md5(pass))
         var json=await usernameCheck()
         var len=json.length;
 
