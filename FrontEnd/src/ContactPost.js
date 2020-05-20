@@ -12,17 +12,29 @@ class ContactPost extends React.Component{
             name:this.props.name,
             number:this.props.number,
             bgcolor:this.getRandomColor(),
+            expand:false,
+            edit:false,
 
         }
 
     }
     getRandomColor(){
-        var list=["lightskyblue","peru","pink","purple","red","white","gold","aqua","lightgreen"]
+        var list=["lightskyblue","red","gold","lightgreen"]//"peru","pink","purple","white","aqua",
         var i=Math.floor(Math.random() * list.length);
         // this.setState({
         //     bgcolor:list[i]
         // });
         return list[i]
+    }
+    expand(){
+        this.setState({
+            expand:!this.state.expand,
+        })
+    }
+    edit(){
+        this.setState({
+            edit:!this.state.edit,
+        })
     }
     // setRandomColor() {
     //     $("#Dp").css("background-color", this.getRandomColor());
@@ -30,11 +42,30 @@ class ContactPost extends React.Component{
     // <img src="https://img.icons8.com/metro/26/000000/gender-neutral-user.png"/>
     render(){
         return(
-            <div className="ContactPost">
-                <div className="ContactImage"><img id="Dp" style={{"backgroundColor":this.state.bgcolor}} src="https://img.icons8.com/pastel-glyph/64/000000/person-male.png"/></div>
-                <div className="ContactName">{this.state.name}</div>
-                <div className="Edit"><button id="EditButton"><img id="EditIcon" src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/></button></div>
-            </div>
+            <>
+                {!this.state.edit&&
+                    <button id="PostButton" onClick={()=>this.expand()}>
+                        <div className="ContactPost">
+                            <div className="ContactImage"><img id="Dp" style={{"backgroundColor":this.state.bgcolor}} src="https://img.icons8.com/pastel-glyph/64/000000/person-male.png"/></div>
+                            <div className="ContactName">{this.state.name}   {this.state.expand && <div className="NumberDisp">{this.state.number}</div>}</div>
+                            <div className="Edit"><button id="EditButton" onClick={()=>this.edit()}><img id="EditIcon" src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/></button></div>
+                        </div>
+                    
+                    </button>
+                }
+                {this.state.edit &&
+                    <div className="Details"> 
+                        <div className="EditDp"><img id="DpEdit" style={{"backgroundColor":this.state.bgcolor}} src="https://img.icons8.com/pastel-glyph/64/000000/person-male.png"/></div>
+                        <div className="EditName">Name:<input id="EditInput" type='text' value={this.state.name}></input></div>
+                        <div className="EditNumber">Number:<input id="EditInput" type='text' value={this.state.number}/></div>
+                        <div className="EditButtons">
+                            <div className="EditButtDiv"><button id="buttone"><img id="imge" src="https://img.icons8.com/ios-glyphs/90/000000/save.png"/>Save</button></div>
+                            <div className="EditButtDiv"><button id="buttone" on onClick={()=>this.setState({edit:!this.state.edit})}><img id="imge" src="https://img.icons8.com/ios-glyphs/90/000000/file-delete.png"/>Discard</button></div>
+                            <div className="EditButtDiv"><button id="buttone"><img id="imge" src="https://img.icons8.com/material-rounded/96/000000/delete-forever.png"/>Delete</button></div>
+                        </div>                      
+                    </div>
+                }
+            </>
         )
 
     }
