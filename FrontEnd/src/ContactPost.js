@@ -14,6 +14,8 @@ class ContactPost extends React.Component{
             bgcolor:this.getRandomColor(),
             expand:false,
             edit:false,
+            newName:this.props.name,
+            newNum:this.props.num,
 
         }
 
@@ -36,6 +38,34 @@ class ContactPost extends React.Component{
             edit:!this.state.edit,
         })
     }
+    async save(){
+        console.log("in save fn");
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: this.state.newName,number:this.state.newNum})
+          };
+        //   console.log('/api/contact/'+props.user)
+          await fetch('/api/contact/'+this.props.username, requestOptions)
+              .then(response => console.log(response.json()))
+        this.delete()
+
+
+    }
+    async delete(){
+        console.log("in del fn")
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: this.state.name,number:this.state.number})
+          };
+          console.log('/api/contact/deleteContact/'+this.props.username)
+          await fetch('/api/contact/deleteContact/'+this.props.username, requestOptions)
+              .then(response => console.log(response.json()))
+
+        this.props.setcontacts(null)
+    }
     // setRandomColor() {
     //     $("#Dp").css("background-color", this.getRandomColor());
     //   }
@@ -56,12 +86,12 @@ class ContactPost extends React.Component{
                 {this.state.edit &&
                     <div className="Details"> 
                         <div className="EditDp"><img id="DpEdit" style={{"backgroundColor":this.state.bgcolor}} src="https://img.icons8.com/pastel-glyph/64/000000/person-male.png"/></div>
-                        <div className="EditName">Name:<input id="EditInput" type='text' value={this.state.name}></input></div>
-                        <div className="EditNumber">Number:<input id="EditInput" type='text' value={this.state.number}/></div>
+                        <div className="EditName">Name:<input id="EditInput" type='text' defaultValue={this.state.name} onChange={(e)=>this.setState({newName:e.target.value})}></input></div>
+                        <div className="EditNumber">Number:<input id="EditInput" type='text' defaultValue={this.state.number} onChange={(e)=>this.setState({newNum:e.target.value})}/></div>
                         <div className="EditButtons">
-                            <div className="EditButtDiv"><button id="buttone"><img id="imge" src="https://img.icons8.com/ios-glyphs/90/000000/save.png"/>Save</button></div>
-                            <div className="EditButtDiv"><button id="buttone" on onClick={()=>this.setState({edit:!this.state.edit})}><img id="imge" src="https://img.icons8.com/ios-glyphs/90/000000/file-delete.png"/>Discard</button></div>
-                            <div className="EditButtDiv"><button id="buttone"><img id="imge" src="https://img.icons8.com/material-rounded/96/000000/delete-forever.png"/>Delete</button></div>
+                            <div className="EditButtDiv"><button id="buttoneSave" onClick={()=>this.save()}><img id="imge" src="https://img.icons8.com/cute-clipart/64/000000/save.png"/><p>Save</p></button></div>
+                            <div className="EditButtDiv"><button id="buttone" onClick={()=>this.setState({edit:!this.state.edit})}><img id="imge"src="https://img.icons8.com/cute-clipart/64/000000/file-delete.png"/><p>Discard</p></button></div>
+                            <div className="EditButtDiv"><button id="buttoneDel" onClick={()=>this.delete()}><img id="imge"src="https://img.icons8.com/cute-clipart/64/000000/delete-forever.png"/><p>Delete</p></button></div>
                         </div>                      
                     </div>
                 }

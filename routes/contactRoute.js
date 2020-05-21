@@ -21,6 +21,9 @@ module.exports = (app) => {
   .post(contact.addContact)
   .get(contact.list_a_user);
 
+  app.route('/api/contact/deleteContact/:username')
+  .post(contact.deleteContact);
+
 };
 
 //   app.get('/api/contact', async (req, res) => {

@@ -57,7 +57,7 @@ function Body(props){
     }
   })
   const getContacts = async () => {
-    console.log("user = "+props.user+props.password)
+    // console.log("user = "+props.user+props.password)
     let res = await ContactService.getAll(props.user,props.password);
     // console.log(res);
     setcontacts(res);
@@ -70,7 +70,7 @@ function Body(props){
       "number":contact.number
     })
     return (
-      <li><ContactPost name={contact.name} number={contact.number}/></li>
+      <li><ContactPost username={props.user} password={props.password} name={contact.name} number={contact.number} contacts={contacts} setcontacts={setcontacts}/></li>
       
     );
   };

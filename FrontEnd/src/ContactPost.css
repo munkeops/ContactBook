@@ -72,11 +72,29 @@
     /* width: 100px; */
     height:40px;
     border: transparent;
+    border-radius: 10px;
+    display: inline-flex;
+    /* margin-left: 10px;         */
+}
+#buttoneSave{
+    /* width: 100px; */
+    height:40px;
+    border: transparent;
+    border-radius: 10px;
+    display: inline-flex;
+    /* margin-left: 10px;         */
+}
+#buttoneDel{
+    /* width: 100px; */
+    height:40px;
+    border: transparent;
+    border-radius: 10px;
+    display: inline-flex;
     /* margin-left: 10px;         */
 }
 #imge{
-    height:20px;
-    /* margin-top: 5px; */
+    height:25px;
+    margin-top: 5px;
 }
 #EditInput{
     border-radius: 5px;

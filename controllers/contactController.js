@@ -1,4 +1,5 @@
 
+// import md5 from 'md5';
 'use strict';
 var mongoose = require('mongoose'),
 
@@ -7,15 +8,33 @@ Contact = mongoose.model('contacts');
 
 
 
-exports.addContact = function (req, res, next)
-{
-var contact = {"name": req.body.name, "number": req.body.number};
-Contact.findOneAndUpdate({username: req.params.username}, {$push: {contacts: contact}},function(err, user) {
+exports.addContact = function (req, res, next){
+  console.log("add new contact request")
+  console.log(req.body)
+  var contact = {"name": req.body.name, "number": req.body.number};
+  Contact.findOneAndUpdate({username: req.params.username}, {$push: {contacts: contact}},function(err, user) {
   if (err)
     res.send(err);
   res.json(user);
-});
+  });
 };
+
+exports.deleteContact =function (req,res){
+  console.log("delete contact request")
+  var contact = {"name": req.body.name, "number": req.body.number};
+  Contact.findOneAndUpdate({username: req.params.username}, {$pull: {contacts: contact}},function(err, user) {
+  if (err)
+    res.send(err);
+  res.json(user);
+  });
+
+}
+
+exports.update_contact=function(req,res){
+ console.log("update request")
+ 
+};
+
 
 
 exports.list_all_users = function(req, res) {
@@ -76,3 +95,5 @@ exports.delete_a_user = function(req, res) {
     res.json({ message: 'Contact successfully deleted' });
   });
 };
+
+
