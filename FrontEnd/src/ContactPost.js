@@ -15,7 +15,7 @@ class ContactPost extends React.Component{
             expand:false,
             edit:false,
             newName:this.props.name,
-            newNum:this.props.num,
+            newNum:this.props.number,
 
         }
 
@@ -38,22 +38,33 @@ class ContactPost extends React.Component{
             edit:!this.state.edit,
         })
     }
-    async save(){
-        console.log("in save fn");
+    refresh(){
         
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: this.state.newName,number:this.state.newNum})
-          };
-        //   console.log('/api/contact/'+props.user)
-          await fetch('/api/contact/'+this.props.username, requestOptions)
-              .then(response => console.log(response.json()))
-        this.delete()
+    }
+    async save(){
 
+        if(this.state.name!=this.state.newName || this.state.number!=this.state.newNum)
+        {
+            this.delete(1)
+            console.log("in save fn");
+            
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: this.state.newName,number:this.state.newNum})
+            };
+            //   console.log('/api/contact/'+props.user)
+            await fetch('/api/contact/'+this.props.username, requestOptions)
+                .then(response => console.log(response.json()))
+            
+        }
+        
+            this.props.setcontacts(null)
+        
+        
 
     }
-    async delete(){
+    async delete(val){
         console.log("in del fn")
         const requestOptions = {
             method: 'POST',
@@ -63,8 +74,13 @@ class ContactPost extends React.Component{
           console.log('/api/contact/deleteContact/'+this.props.username)
           await fetch('/api/contact/deleteContact/'+this.props.username, requestOptions)
               .then(response => console.log(response.json()))
+            
+            if(val==0)
+            {
+                console.log("val = 0")
+                this.props.setcontacts(null)
+            }
 
-        this.props.setcontacts(null)
     }
     // setRandomColor() {
     //     $("#Dp").css("background-color", this.getRandomColor());
@@ -91,7 +107,7 @@ class ContactPost extends React.Component{
                         <div className="EditButtons">
                             <div className="EditButtDiv"><button id="buttoneSave" onClick={()=>this.save()}><img id="imge" src="https://img.icons8.com/cute-clipart/64/000000/save.png"/><p>Save</p></button></div>
                             <div className="EditButtDiv"><button id="buttone" onClick={()=>this.setState({edit:!this.state.edit})}><img id="imge"src="https://img.icons8.com/cute-clipart/64/000000/file-delete.png"/><p>Discard</p></button></div>
-                            <div className="EditButtDiv"><button id="buttoneDel" onClick={()=>this.delete()}><img id="imge"src="https://img.icons8.com/cute-clipart/64/000000/delete-forever.png"/><p>Delete</p></button></div>
+                            <div className="EditButtDiv"><button id="buttoneDel" onClick={()=>this.delete(0)}><img id="imge"src="https://img.icons8.com/cute-clipart/64/000000/delete-forever.png"/><p>Delete</p></button></div>
                         </div>                      
                     </div>
                 }

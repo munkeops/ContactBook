@@ -42,6 +42,10 @@ function Body(props){
 
   // const forceUpdate = useForceUpdate();
   var values=[]
+  const [user, setUsername] = useState(props.user);
+  const [password, setPassword] = useState(props.password);
+ 
+
   
   const [contacts, setcontacts] = useState(null);
     // Declare a new state variable, which we'll call "count"
@@ -58,7 +62,7 @@ function Body(props){
   })
   const getContacts = async () => {
     // console.log("user = "+props.user+props.password)
-    let res = await ContactService.getAll(props.user,props.password);
+    let res = await ContactService.getAll(user,password);
     // console.log(res);
     setcontacts(res);
   }
