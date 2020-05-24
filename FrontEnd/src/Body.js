@@ -19,16 +19,12 @@ import ContactService from './services/ContactService';
 
 function Body(props){
 
-    // const forceUpdate = useForceUpdate();
     var values=[]
     const [user, setUsername] = useState(props.user);
     const [password, setPassword] = useState(props.password);
     const [searchItem,setSearchItem]=useState(props.searchItem);
-   
-  
     
     const [contacts, setcontacts] = useState(null);
-      // Declare a new state variable, which we'll call "count"
     const [viewAddContact, setview] = useState(false);
   
     const [newContactName, setName] = useState('')
@@ -49,53 +45,20 @@ function Body(props){
     }
   
     const renderContact = contact => {
-    //   console.log(values)
         
-        // console.log(props.searchItem)
         if(props.searchItem!=""){
             if(props.searchItem==contact.name || props.searchItem==contact.number){
-                // values.push({
-                //     "name":contact.name,
-                //     "number":contact.number
-                // })
-                console.log(props.searchItem==contact.name )
-                
-                // console.log(contact.name )
-                // console.log(props.searchItem)
                 return (
                     <li><ContactPost username={props.user} password={props.password} name={contact.name} number={contact.number} contacts={contacts} setcontacts={setcontacts}/></li>
-                    
                 );
             }
         }
         else{
             return (
                 <li><ContactPost username={props.user} password={props.password} name={contact.name} number={contact.number} contacts={contacts} setcontacts={setcontacts}/></li>
-                
             );
 
         }
-        // else{
-        //     return (
-        //         <li><ContactPost username={props.user} password={props.password} name={contact.name} number={contact.number} contacts={contacts} setcontacts={setcontacts}/></li>
-                        
-        //     );
-
-        // }
-      
-    //   console.log(values.length)
-      
-
-    //   if(props.searchItem!=""){
-    //     return (
-    //         <li><ContactPost username={props.user} password={props.password} name={values.name} number={values.number} contacts={contacts} setcontacts={setcontacts}/></li>
-            
-    //       );
-    //   }
-    //   else{
-        
-    //   }
-
       
     };
   
@@ -120,10 +83,8 @@ function Body(props){
       await fetch('/api/contact/'+props.user, requestOptions)
           .then(response => console.log(response.json()))
         
-      // forceUpdate()
       setcontacts(null)
       clearNewCon()
-          // .then(data => this.setState({ postId: data.id }));
     }
   
     function Functions(){
@@ -167,7 +128,6 @@ function Body(props){
             </div>
           }
           <ul id="ListContacts">
-            {/* {console.log(typeof(contacts))} */}
             
             {(contacts && contacts.length > 0) ? (
               contacts.map(contact => renderContact(contact))
